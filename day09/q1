@@ -1,0 +1,59 @@
+Q17 Write a program to find the roots of a quadratic equation and categorize them.
+
+#include <stdio.h>
+#include <math.h> // Required for the sqrt() function
+
+int main() {
+    double a, b, c;
+    double discriminant, root1, root2, realPart, imagPart;
+
+    // 1. Accept coefficients from the user
+    printf("Enter coefficients a, b and c: ");
+    if (scanf("%lf %lf %lf", &a, &b, &c) != 3) {
+        printf("Error: Invalid input.\n");
+        return 1;
+    }
+
+    // Edge case: If a is 0, it's a linear equation, not a quadratic equation
+    if (a == 0) {
+        if (b != 0) {
+            printf("This is a linear equation. One root: %.2lf\n", -c / b);
+        } else {
+            printf("Invalid equation (no solution or infinite solutions).\n");
+        }
+        return 0;
+    }
+
+    // 2. Calculate the discriminant
+    discriminant = (b * b) - (4 * a * c);
+
+    // 3. Categorize and calculate roots based on the discriminant value
+    if (discriminant > 0) {
+        // Case 1: Real and Distinct Roots
+        root1 = (-b + sqrt(discriminant)) / (2 * a);
+        root2 = (-b - sqrt(discriminant)) / (2 * a);
+        
+        printf("Root Categorization: Real and Distinct\n");
+        printf("root1 = %.2lf\n", root1);
+        printf("root2 = %.2lf\n", root2);
+    } 
+    else if (discriminant == 0) {
+        // Case 2: Real and Equal Roots
+        root1 = root2 = -b / (2 * a);
+        
+        printf("Root Categorization: Real and Equal\n");
+        printf("root1 = root2 = %.2lf\n", root1);
+    } 
+    else {
+        // Case 3: Complex / Imaginary Roots
+        realPart = -b / (2 * a);
+        imagPart = sqrt(-discriminant) / (2 * a);
+        
+        printf("Root Categorization: Complex (Imaginary)\n");
+        printf("root1 = %.2lf + %.2lfi\n", realPart, imagPart);
+        printf("root2 = %.2lf - %.2lfi\n", realPart, imagPart);
+    }
+
+    return 0;
+}
+ 
