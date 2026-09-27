@@ -1,0 +1,46 @@
+Q52 Write a program to print the following pattern:
+
+*
+
+*
+*
+*
+
+*
+*
+*
+*
+*
+
+*
+*
+*
+
+*
+
+#include <stdio.h>
+int main() {
+    int total_rows = 5;
+    int stars = 1;
+
+    // Outer loop handles the rows
+    for (int i = 1; i <= total_rows; i++) {
+        
+        // Inner loop prints the stars for the current row
+        for (int j = 1; j <= stars; j++) {
+            printf("*\n");
+        }
+
+        // Determine the number of stars for the next row
+        if (i < 3) {
+            stars += 2; // Increase by 2 for the first half
+        } else {
+            stars -= 2; // Decrease by 2 for the second half
+        }
+
+        // Print an extra newline to match the double spacing between blocks
+        printf("\n");
+    }
+
+    return 0;
+}
